@@ -11,7 +11,9 @@ public class Main {
             System.out.println("Escolha uma opção:");
             System.out.println("1. Adicionar receita");
             System.out.println("2. Buscar receita por ID");
-            System.out.println("3. Sair");
+            System.out.println("3. Remover receita");
+            System.out.println("4. Listar receitas");
+            System.out.println("5. Sair");
 
             int opcao = scanner.nextInt();
             scanner.nextLine();
@@ -30,6 +32,17 @@ public class Main {
                     System.out.println(recipefy.buscarReceita(id));
                     break;
                 case 3:
+                    System.out.print("Digite o ID da receita que deseja remover: ");
+                    int idRemover = scanner.nextInt();
+                    System.out.println(recipefy.removerReceita(idRemover));
+                    break;
+                case 4:
+                    System.out.print("Receitas disponiveis:");
+                    for (String receita : recipefy.listarReceitas()) {
+                        System.out.println("- " + receita);
+                    }
+                    break;
+                case 5:
                     System.out.println("Já vai? fique mais um pouco na Recipefy");
                     scanner.close();
                     return;

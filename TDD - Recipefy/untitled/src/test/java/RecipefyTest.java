@@ -17,4 +17,16 @@ public class RecipefyTest {
         assertEquals("ID: 1, Nome: Brownie, Descrição: para fazermos o tantantan", busca.buscarReceita(1));
     }
 
+    @Test
+    public void testeRemoverReceita(){
+        Recipefy remover = new Recipefy();
+        remover.adicionarReceita("Brownie", "para fazermos o tantantan");
+        assertEquals("Receita removida com sucesso!", remover.removerReceita(1));
+    }
+    @Test
+    public void testeListarReceita(){
+        Recipefy listar = new Recipefy();
+        listar.adicionarReceita("Brownie", "para fazermos o tantantan");
+        assertEquals("Receitas:", listar.listarReceitas());
+    }
 }
