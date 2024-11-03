@@ -1,5 +1,6 @@
 package org.example;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Recipefy {
     private ArrayList<String> receitas = new ArrayList<>();
@@ -31,7 +32,12 @@ public class Recipefy {
         }
         return "Receita com ID " + id + " não encontrada.";
     }
-    public ArrayList<String> listarReceitas() {
-        return new ArrayList<>(receitas);  // Retorna uma cópia para evitar alterações externas
+    public List<String> listarReceitas() {
+        if (receitas.isEmpty()) {
+            System.out.println("Nenhuma receita disponível no momento.");
+            return new ArrayList<>();
+        }
+        return new ArrayList<>(receitas);
     }
+
 }

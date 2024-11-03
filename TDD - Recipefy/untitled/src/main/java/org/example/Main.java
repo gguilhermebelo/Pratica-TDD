@@ -37,9 +37,9 @@ public class Main {
                     System.out.println(recipefy.removerReceita(idRemover));
                     break;
                 case 4:
-                    System.out.print("Receitas disponiveis:");
+                    System.out.println("Receitas disponíveis:");
                     for (String receita : recipefy.listarReceitas()) {
-                        System.out.println("- " + receita);
+                        System.out.println(" - " + receita);
                     }
                     break;
                 case 5:

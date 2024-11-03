@@ -1,6 +1,9 @@
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.example.Recipefy;
+
+import java.util.ArrayList;
+
 public class RecipefyTest {
 
     @Test
@@ -24,9 +27,13 @@ public class RecipefyTest {
         assertEquals("Receita removida com sucesso!", remover.removerReceita(1));
     }
     @Test
-    public void testeListarReceita(){
+    public void testeListarReceitas() {
         Recipefy listar = new Recipefy();
         listar.adicionarReceita("Brownie", "para fazermos o tantantan");
-        assertEquals("Receitas:", listar.listarReceitas());
+
+        ArrayList<String> esperado = new ArrayList<>();
+        esperado.add("ID: 1, Nome: Brownie, Descrição: para fazermos o tantantan");
+        assertEquals(esperado, listar.listarReceitas());
     }
+
 }
