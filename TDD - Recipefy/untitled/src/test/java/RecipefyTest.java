@@ -36,4 +36,27 @@ public class RecipefyTest {
         assertEquals(esperado, listar.listarReceitas());
     }
 
+    @Test
+    public void testeFavoritarReceita() {
+        Recipefy recipefy = new Recipefy();
+        recipefy.adicionarReceita("Brownie", "para fazermos o tantantan");
+
+        assertEquals("Receita favoritada com sucesso!", recipefy.favoritarReceita(2));
+
+        String receitaFavoritada = recipefy.buscarReceita(1);
+        assertEquals("ID: 1, Nome: Brownie, Descrição: para fazermos o tantantan", receitaFavoritada);
+    }
+
+    @Test
+    public void testeEditarReceita() {
+        Recipefy recipefy = new Recipefy();
+        recipefy.adicionarReceita("Brownie", "para fazermos o tantantan");
+
+        // Edita a receita com ID 1 e verifica a mensagem de sucesso
+        assertEquals("Receita editada com sucesso!", recipefy.editarReceita(2, "Brownie Especial", "Receita atualizada para o tantantan especial"));
+
+        // Verifica se a receita realmente foi atualizada
+        String receitaEditada = recipefy.buscarReceita(2);
+        assertEquals("ID: 2, Nome: Brownie Especial, Descrição: Receita atualizada para o tantantan especial, Favorita: false", receitaEditada);
+    }
 }
