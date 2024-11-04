@@ -16,9 +16,6 @@ public class Recipefy {
     private int proximoId = 1;
 
     public String adicionarReceita(String nome, String descricao) {
-        String receita = "ID: " + proximoId++ + ", Nome: " + nome + ", Descrição: " + descricao;
-        receitas.add(receita);
-        
         Receita novaReceita = new Receita(proximoId++, nome, descricao);
         receitasObj.add(novaReceita);
         return MENSAGEM_RECEITA_ADICIONADA;
@@ -26,17 +23,9 @@ public class Recipefy {
 
     
     public String buscarReceita(int id) {
-        String resultado = "ID: " + id + ",";
-
         for (Receita receita : receitasObj) {
             if (receita.getId() == id) {
                 return receita.toString();
-            }
-        }
-        
-        for (String receita : receitas) {
-            if (receita.startsWith(resultado)) {
-                return receita;
             }
         }
 
@@ -44,10 +33,9 @@ public class Recipefy {
     }
 
     public String removerReceita(int id) {
-        String idReceita = "ID: " + id + ",";
-        for (String receita : receitas) {
-            if (receita.startsWith(idReceita)) {
-                receitas.remove(receita);
+        for (Receita receita : receitasObj) {
+            if (receita.getId() == id) {
+                receitasObj.remove(receita);
                 return MENSAGEM_RECEITA_REMOVIDA;
             }
         }
@@ -55,12 +43,12 @@ public class Recipefy {
         return "Receita com ID " + id + " não encontrada.";
     }
     
-    public List<String> listarReceitas() {
-        if (receitas.isEmpty()) {
+    public List<Receita> listarReceitas() {
+        if (receitasObj.isEmpty()) {
             System.out.println("Nenhuma receita disponível no momento.");
             return new ArrayList<>();
         }
-        return new ArrayList<>(receitas);
+        return new ArrayList<>(receitasObj);
     }
 
     public String favoritarReceita(int id) {

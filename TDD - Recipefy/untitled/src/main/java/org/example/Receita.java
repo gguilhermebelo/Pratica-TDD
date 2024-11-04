@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.Objects;
+
 public class Receita {
     private int id;
     private String nome;
@@ -45,4 +47,20 @@ public class Receita {
     public String toString() {
         return "ID: " + id + ", Nome: " + nome + ", Descrição: " + descricao + ", Favorita: " + favorita;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Receita receita = (Receita) o;
+        return id == receita.id &&
+            Objects.equals(nome, receita.nome) &&
+            Objects.equals(descricao, receita.descricao);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nome, descricao);
+    }
+
 }

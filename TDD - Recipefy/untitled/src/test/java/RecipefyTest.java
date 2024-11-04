@@ -1,5 +1,6 @@
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
+import org.example.Receita;
 import org.example.Recipefy;
 
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ public class RecipefyTest {
     public void testeBuscarReceita() {
         Recipefy busca = new Recipefy();
         busca.adicionarReceita("Brownie", "para fazermos o tantantan");
-        assertEquals("ID: 1, Nome: Brownie, Descrição: para fazermos o tantantan", busca.buscarReceita(1));
+        assertEquals("ID: 1, Nome: Brownie, Descrição: para fazermos o tantantan, Favorita: false", busca.buscarReceita(1));
     }
 
     @Test
@@ -31,8 +32,8 @@ public class RecipefyTest {
         Recipefy listar = new Recipefy();
         listar.adicionarReceita("Brownie", "para fazermos o tantantan");
 
-        ArrayList<String> esperado = new ArrayList<>();
-        esperado.add("ID: 1, Nome: Brownie, Descrição: para fazermos o tantantan");
+        ArrayList<Receita> esperado = new ArrayList<>();
+        esperado.add(new Receita(1, "Brownie", "para fazermos o tantantan"));
         assertEquals(esperado, listar.listarReceitas());
     }
 
@@ -41,10 +42,10 @@ public class RecipefyTest {
         Recipefy recipefy = new Recipefy();
         recipefy.adicionarReceita("Brownie", "para fazermos o tantantan");
 
-        assertEquals("Receita favoritada com sucesso!", recipefy.favoritarReceita(2));
+        assertEquals("Receita favoritada com sucesso!", recipefy.favoritarReceita(1));
 
         String receitaFavoritada = recipefy.buscarReceita(1);
-        assertEquals("ID: 1, Nome: Brownie, Descrição: para fazermos o tantantan", receitaFavoritada);
+        assertEquals("ID: 1, Nome: Brownie, Descrição: para fazermos o tantantan, Favorita: true", receitaFavoritada);
     }
 
     @Test
@@ -53,10 +54,10 @@ public class RecipefyTest {
         recipefy.adicionarReceita("Brownie", "para fazermos o tantantan");
 
         // Edita a receita com ID 1 e verifica a mensagem de sucesso
-        assertEquals("Receita editada com sucesso!", recipefy.editarReceita(2, "Brownie Especial", "Receita atualizada para o tantantan especial"));
+        assertEquals("Receita editada com sucesso!", recipefy.editarReceita(1, "Brownie Especial", "Receita atualizada para o tantantan especial"));
 
         // Verifica se a receita realmente foi atualizada
-        String receitaEditada = recipefy.buscarReceita(2);
-        assertEquals("ID: 2, Nome: Brownie Especial, Descrição: Receita atualizada para o tantantan especial, Favorita: false", receitaEditada);
+        String receitaEditada = recipefy.buscarReceita(1);
+        assertEquals("ID: 1, Nome: Brownie Especial, Descrição: Receita atualizada para o tantantan especial, Favorita: false", receitaEditada);
     }
 }
