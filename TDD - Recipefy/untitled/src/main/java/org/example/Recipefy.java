@@ -16,13 +16,15 @@ public class Recipefy {
     private int proximoId = 1;
 
     public String adicionarReceita(String nome, String descricao) {
-        String receita = "ID: " + proximoId++ + ", Nome: " + nome + ", Descrição: " + descricao;
-        receitas.add(receita);
-        
-        Receita novaReceita = new Receita(proximoId++, nome, descricao);
-        receitasObj.add(novaReceita);
-        return MENSAGEM_RECEITA_ADICIONADA;
+    String receita = "ID: " + proximoId + ", Nome: " + nome + ", Descrição: " + descricao;
+    receitas.add(receita);
+
+    Receita novaReceita = new Receita(proximoId++, nome, descricao); 
+    receitasObj.add(novaReceita);
+
+    return MENSAGEM_RECEITA_ADICIONADA;
     }
+
     
     public String buscarReceita(int id) {
         String resultado = "ID: " + id + ",";
